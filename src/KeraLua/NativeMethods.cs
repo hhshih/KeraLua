@@ -14,9 +14,11 @@ namespace KeraLua
 		const string LIBNAME = "__Internal";
 #else
 #if DEBUGLUA
-		const string LIBNAME = "lua52d";
+		const string LIBNAME = "lua51";
+		const string LNETNAME = "lnet";
 #else
-		const string LIBNAME = "lua52";
+		const string LIBNAME = "lua51";
+		const string LNETNAME = "lnet";
 #endif
 
 #if USE_DYNAMIC_DLL_REGISTER
@@ -85,7 +87,7 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_getmetatable")]
 		internal static extern int LuaGetMetatable (IntPtr luaState, int objIndex);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_equal")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_equal")]
 		internal static extern int LuaNetEqual (IntPtr luaState, int index1, int index2);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushvalue")]
@@ -121,7 +123,7 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_isstring")]
 		internal static extern int LuaIsString (IntPtr luaState, int index);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_isstring_strict")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_isstring_strict")]
 		internal static extern int LuaNetIsStringStrict (IntPtr luaState, int index);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_iscfunction")]
@@ -130,13 +132,13 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnil")]
 		internal static extern void LuaPushNil (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_pcall")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_pcall")]
 		internal static extern int LuaNetPCall (IntPtr luaState, int nArgs, int nResults, int errfunc);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_tocfunction")]
 		internal static extern IntPtr LuaToCFunction (IntPtr luaState, int index);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_tonumber")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_tonumber")]
 		internal static extern double LuaNetToNumber (IntPtr luaState, int index);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_toboolean")]
@@ -159,14 +161,14 @@ namespace KeraLua
 		internal static extern IntPtr LuaToLString (IntPtr luaState, int index, out uint strLen);
 
 #if WSTRING
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushlwstring")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushlwstring")]
 #else
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_pushlstring")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_pushlstring")]
 #endif
 		internal static extern void LuaNetPushLString (IntPtr luaState, string str, uint size);
 
 #if WSTRING
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushwstring")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Unicode, EntryPoint = "luanet_pushwstring")]
 #else
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "lua_pushstring")]
 #endif
@@ -184,13 +186,13 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luaL_getmetafield")]
 		internal static extern int LuaLGetMetafield (IntPtr luaState, int stackPos, string field);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadbuffer")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadbuffer")]
 		internal static extern int LuaNetLoadBuffer (IntPtr luaState, string buff, uint size, string name);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadbuffer")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadbuffer")]
 		internal static extern int LuaNetLoadBuffer (IntPtr luaState, byte [] buff, uint size, string name);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadfile")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_loadfile")]
 		internal static extern int LuaNetLoadFile (IntPtr luaState, string filename);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_error")]
@@ -211,7 +213,7 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_gethookmask")]
 		internal static extern int LuaGetHookMask (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_sethook")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_sethook")]
 		internal static extern int LuaSetHook (IntPtr luaState, IntPtr func, int mask, int count);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_gethookcount")]
@@ -235,37 +237,37 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_setupvalue")]
 		internal static extern IntPtr LuaSetUpValue (IntPtr luaState, int funcindex, int n);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_tonetobject")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_tonetobject")]
 		internal static extern int LuaNetToNetObject (IntPtr luaState, int index);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_newudata")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_newudata")]
 		internal static extern void LuaNetNewUData (IntPtr luaState, int val);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_rawnetobj")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_rawnetobj")]
 		internal static extern int LuaNetRawNetObj (IntPtr luaState, int obj);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_checkudata")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_checkudata")]
 		internal static extern int LuaNetCheckUData (IntPtr luaState, int ud, string tname);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_gettag")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_gettag")]
 		internal static extern IntPtr LuaNetGetTag ();
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_pushglobaltable")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_pushglobaltable")]
 		internal static extern void LuaNetPushGlobalTable (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_popglobaltable")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_popglobaltable")]
 		internal static extern void LuaNetPopGlobalTable (IntPtr luaState);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_getglobal")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_getglobal")]
 		internal static extern void LuaNetGetGlobal (IntPtr luaState, string name);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_setglobal")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "luanet_setglobal")]
 		internal static extern void LuaNetSetGlobal (IntPtr luaState, string name);
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_registryindex")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_registryindex")]
 		internal static extern int LuaNetRegistryIndex ();
 
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_get_main_state")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "luanet_get_main_state")]
 		internal static extern IntPtr LuaNetGetMainState (IntPtr luaState);
 	}
 }

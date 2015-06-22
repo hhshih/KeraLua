@@ -122,3 +122,10 @@ Makefile.in
 /install-sh
 /missing
 /config.status
+
+*~
+*.exe
+*.exe.config
+*.exe.manifest
+*.dll
+*.xml
