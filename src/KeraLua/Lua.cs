@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace KeraLua
 {
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
 	public delegate int LuaNativeFunction (KeraLua.LuaState luaState);
 
 	public static partial class Lua
