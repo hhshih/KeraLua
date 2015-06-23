@@ -147,7 +147,7 @@ namespace KeraLua
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_atpanic")]
 		internal static extern void LuaAtPanic (IntPtr luaState, IntPtr panicf);
 		
-		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushstdcallcfunction")]
+		[DllImport (LNETNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushstdcallcfunction")]
 		internal static extern void LuaPushStdCallCFunction (IntPtr luaState, IntPtr function);
 
 		[DllImport (LIBNAME, CallingConvention = CallingConvention.Cdecl, EntryPoint = "lua_pushnumber")]
